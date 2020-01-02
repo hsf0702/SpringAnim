@@ -34,7 +34,6 @@ class ConnInfoDialog(
 ) {
     private var dialog: AlertDialog? = null
     private var dialogView: View? = null
-    private var ll_container: LinearLayout? = null
 
     fun getDialog(): AlertDialog {
         return this.dialog!!
@@ -45,7 +44,6 @@ class ConnInfoDialog(
         if (type != 2) {
             dialogView = LayoutInflater.from(mActivity).inflate(R.layout.conn_info_layout, null)
             val tv_title = dialogView!!.findViewById<TextView>(R.id.tv_title)
-            ll_container = dialogView!!.findViewById<LinearLayout>(R.id.ll_container)
             val tv_content = dialogView!!.findViewById<TextView>(R.id.tv_content)
             val tv_cancel = dialogView!!.findViewById<TextView>(R.id.tv_cancel)
             val tv_ok = dialogView!!.findViewById<TextView>(R.id.tv_ok)
@@ -74,10 +72,9 @@ class ConnInfoDialog(
             tv_content.text = bean.content
         } else {
             dialogView = LayoutInflater.from(mActivity).inflate(R.layout.conn_bottom_layout, null)
-            ll_container = dialogView!!.findViewById<LinearLayout>(R.id.ll_container)
-            val tv = dialogView!!.findViewById<TextView>(R.id.tv)
+            val ll_container = dialogView!!.findViewById<LinearLayout>(R.id.ll_container)
 
-            tv.layoutParams = LinearLayout.LayoutParams(
+            ll_container.layoutParams = LinearLayout.LayoutParams(
                 Utils.dip2px(mActivity, 360f),
                 Utils.dip2px(mActivity, 300.0f)
             )
@@ -87,7 +84,6 @@ class ConnInfoDialog(
             AlertDialog.Builder(mActivity, R.style.center_alert_dialog).setView(dialogView)
         dialog = customizeDialog.create()
 
-        ll_container!!.setVisibility(View.VISIBLE)
         if (isAnim) {
             if (type == 1) {
                 dialog!!.setCanceledOnTouchOutside(false)//是否外部可点击

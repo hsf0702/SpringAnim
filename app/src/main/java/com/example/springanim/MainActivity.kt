@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.springanim.dialog.ConnInfoBean
 import com.example.springanim.dialog.ConnInfoDialog
+import com.example.springanim.dialog.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -71,12 +72,9 @@ class MainActivity : AppCompatActivity() {
 
         bt_bottom.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                val bean = ConnInfoBean()
-                bean.title = "温馨提示"
-                bean.content = "导出成功，是否现在打开该excel文件？"
                 bottomDialog = ConnInfoDialog(
                     this@MainActivity,
-                    bean,
+                    ConnInfoBean(),
                     object : ConnInfoDialog.CallBack {
                         override fun onCancelClick() {
 
